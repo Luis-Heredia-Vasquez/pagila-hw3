@@ -1,5 +1,5 @@
 # pagila-hw3
-[![](https://github.com/mikeizbicki/pagila-hw3/workflows/tests/badge.svg)](https://github.com/mikeizbicki/pagila-hw3/actions?query=workflow%3Atests)
+[![](https://github.com/Luis-Heredia-Vasquez/pagila-hw3/workflows/tests/badge.svg)](https://github.com/Luis-Heredia-Vasquez/pagila-hw3/actions?query=workflow%3Atests)
 
 ## Tasks
 
@@ -8,8 +8,8 @@
 
 1. Build the containers and enter psql with the following commands.
     ```
-    $ docker-compose up -d --build
-    $ docker-compose exec pg psql
+    $ docker compose up -d --build
+    $ docker compose exec pg psql
     ```
 
 1. We will now observe some problems with the pagila dataset,
