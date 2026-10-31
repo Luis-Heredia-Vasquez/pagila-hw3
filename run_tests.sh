@@ -4,6 +4,12 @@ failed=false
 
 mkdir -p results
 
+if command -v docker >/dev/null 2>&1; then
+    PSQL_CMD=(docker compose exec -T pg psql -v ON_ERROR_STOP=1)
+else
+    PSQL_CMD=(psql -v ON_ERROR_STOP=1)
+fi
+
 for problem in sql/*; do
     printf '%s ' "$problem"
 
@@ -12,8 +18,7 @@ for problem in sql/*; do
     expected="expected/$problem_id.out"
     error_file="results/$problem_id.err"
 
-    if ! docker compose exec -T pg psql -v ON_ERROR_STOP=1 \
-        < "$problem" > "$result" 2> "$error_file"; then
+    if ! "${PSQL_CMD[@]}" < "$problem" > "$result" 2> "$error_file"; then
         echo fail
         cat "$error_file"
         failed=true
